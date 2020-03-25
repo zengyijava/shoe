@@ -125,9 +125,9 @@ function showCart(data){
 			+'<li class="col03">'+item.gname+'<br><em>'+item.price+'元/'+item.weight+'</em></li>'
 			+'<li class="col04">'+item.weight+'</li><li class="col05">'+item.price+'</li>'
 			+'<li class="col06"><div class="num_add">'
-			+'<a href="javascript:void(0);" onclick="add(this)" class="add fl">+</a>'
-			+'<input type="text" class="num_show fl" value="'+item.num+'">'
-			+'<a href="javascript:void(0);" onclick="lost(this)" class="minus fl">-</a>'	
+			+'<a href="javascript:void(0);" onclick="addNum('+item.cno+')" class="add fl">+</a>'
+			+'<input type="text" id="num" class="num_show fl" onchange="changeNum('+item.cno+')"  value="'+item.num+'">'
+			+'<a href="javascript:void(0);" onclick="minNum('+item.cno+')" class="minus fl">-</a>'	
 			+'</div></li><li class="col07">'+(item.price*item.num)+'</li>'
 			+'<li class="col08"><a href="javascript:deleteByCno('+item.cno+')" onclick="delGoods(this)">删除</a></li>';
 			totalPrice+=(item.price*item.num);
@@ -139,11 +139,44 @@ function showCart(data){
 	$('#cart_list_td').html('').append(str);
 }
 
+function changeNum(cno){
+	var num=$('#num').val();
+	$.post('../cart/update',{cno:cno,num:num},function(data){
+		data=parseInt(data);
+		alert("确定要修改数量吗?");
+		if(data>0){
+			window.location.href="http://localhost:8080/shoe_ssm/front/cart.html";
+			//showCart();
+		}
+	});
+	
+}
+
 function deleteByCno(cno){
 	$.post('../cart/delCon',{cno:cno},function(data){
 		data=parseInt(data);
 		if(data>0){
-			showCart();
+			window.location.href="http://localhost:8080/shoe_ssm/front/cart.html";
+		}
+	});
+	
+}
+
+function addNum(cno){
+	$.post('../cart/addNum',{cno:cno},function(data){
+		data=parseInt(data);
+		if(data>0){
+			window.location.href="http://localhost:8080/shoe_ssm/front/cart.html";
+		}
+	});
+	
+}
+
+function minNum(cno){
+	$.post('../cart/minNum',{cno:cno},function(data){
+		data=parseInt(data);
+		if(data>0){
+			window.location.href="http://localhost:8080/shoe_ssm/front/cart.html";
 		}
 	});
 	

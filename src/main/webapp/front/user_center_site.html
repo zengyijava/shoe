@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>天天生鲜-用户中心</title>
+	<title>名牌鞋网站-用户中心</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 	<div class="header_con">
 		<div class="header">
-			<div class="welcome fl">欢迎来到天天生鲜!</div>
+			<div class="welcome fl">欢迎来到名牌鞋网站!</div>
 			<div class="fr">
 				<div class="login_info fl">
 					欢迎您：<em>张 山</em>
@@ -51,38 +51,37 @@
 		</div>
 		<div class="right_content clearfix">
 				<h3 class="common_title2">收货地址</h3>
-				<div class="site_con">
+				<div class="site_con" id="site_con">
 					<dl>
 						<dt>当前地址：</dt>
-						<dd>北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 182****7528</dd>
+						<dd>北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 158****7528</dd>
 					</dl>					
 				</div>
 				<h3 class="common_title2">编辑地址</h3>
 				<div class="site_con">
 					<form>
 						<div class="form_group">
-							<label>收件人：</label>
-							<input type="text" name="">
+							<label >收件人：</label>
+							<input type="text" name=""  id="name">
 						</div>
 						<div class="form_group form_group2">
-							<label>详细地址：</label>
-							<textarea class="site_area"></textarea>
+							<label >详细地址：</label>
+							<textarea class="site_area"  id="addr"></textarea>
 						</div>
 						<div class="form_group">
-							<label>邮编：</label>
-							<input type="text" name="">
+							<label >邮编：</label>
+							<input type="text" name="" id="photo">
 						</div>
 						<div class="form_group">
-							<label>手机：</label>
-							<input type="text" name="">
+							<label >手机：</label>
+							<input type="text" name=""  id="tel">
 						</div>
 
-						<input type="submit" name="" value="提交" class="info_submit">
+						<input type="submit" name="" value="提交" class="info_submit" onclick="updateAddr()">
 					</form>
 				</div>
 		</div>
 	</div>
-
 
 
 	<div class="footer">
@@ -95,9 +94,52 @@
 			<span>|</span>
 			<a href="#">友情链接</a>		
 		</div>
-		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+		<p>CopyRight © 2020 计算机科学与技术学院 All Rights Reserved</p>
 		<p>电话：010-****888    京ICP备*******8号</p>
 	</div>
+
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+
+$(function(){
+	$.get('../addr/findByMno',null,function(data){
+		
+		console.log(data);
+		showAddr(data);
+	});
+});
+
+function showAddr(data){
+	str='';
+	$.each(data,function(index,item){
+		str='<dl><dt>当前地址：</dt>'
+			+'<dd>'+item.addr+' （'+item.name+' 收） '+item.tel+'</dd></dl>';
+	});
+	$('#site_con').html('').append(str);
+}
+
+
+//修改地址
+function updateAddr(){
+	var name=$('#name').val();
+	var addr=$('#addr').val();
+	var photo=$('#photo').val();
+	var tel=$('#tel').val();
+	//alert(name);
+	$.post('../addr/update',{name:name,addr:addr,photo:photo,tel:tel},function(data){
+		data=parseInt(data);
+		if(data>0){
+			//window.location.href="http://localhost:8080/shoe_ssm/front/user_center_site.html";
+			alert("修改地址成功！！！");
+		}
+	});`
+	
+}
+
+
+		
+	</script>
+
 	
 </body>
 </html>

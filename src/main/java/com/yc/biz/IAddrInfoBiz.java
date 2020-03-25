@@ -8,21 +8,28 @@ import com.yc.po.AddrInfo;
 public interface IAddrInfoBiz {
 	
 	/**
-	 * 娣诲姞鍦板潃淇℃伅
+	 * 添加地址信息
 	 * @param af
 	 * @return
 	 */
 	public int add(AddrInfo af);
 	
 	/**
-	 * 淇敼榛樿鍦板潃
+	 * 修改默认地址
 	 * @param af
 	 * @return
 	 */
-	public int update(String[] anos);
+	public int update(AddrInfo af);
+	
+	/**
+	 * 修改默认地址
+	 * @param af
+	 * @return
+	 */
+	public int updates(String[] anos);
 
 	/**
-	 * 鏌ヨ鎸囧畾浼氬憳鐨勫湴鍧�淇℃伅
+	 * 查询指定会员的地址信息
 	 * @param mno
 	 * @return
 	 */

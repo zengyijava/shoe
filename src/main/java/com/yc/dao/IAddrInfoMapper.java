@@ -24,7 +24,7 @@ public interface IAddrInfoMapper {
 	 * @param af
 	 * @return
 	 */
-	public int update(int mno);
+	public int update(AddrInfo af);
 	
 	/**
 	 * 修改默认地址

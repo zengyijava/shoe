@@ -36,4 +36,19 @@ public interface IGoodsInfoBiz {
 	
 	
 	public int pageTotal(int tno);
+	
+	
+	/*
+	 * 后台分页***************************************************************
+	 */
+	public int Total();
+	
+	public List<GoodsInfo> Find(int page, int rows);
+	
+	
+	
+	
+	
+	
+	
 }

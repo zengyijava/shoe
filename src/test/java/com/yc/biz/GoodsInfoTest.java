@@ -37,8 +37,22 @@ public class GoodsInfoTest {
 	
 	@Test
 	public void testpageTotal() {
-		
 		System.out.println(biz.pageTotal(1));
+	}
+	
+	
+	/*
+	 * 后台分页**********************************
+	 */
+	@Test
+	public void testTotal() {
+		System.out.println(biz.Total());
+	}
+	
+	@Test
+	public void testFind() {
+		
+		System.out.println(biz.Find( 11, 2));
 	}
 	
 	

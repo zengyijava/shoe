@@ -62,4 +62,16 @@ public interface IGoodsInfoMapper {
 	 * @return
 	 */
 	public List<GoodsInfo> findAll();
+	
+	
+	
+	
+	/*
+	 * 后台分页*************************************************************
+	 */
+	public int Total();
+	
+	public List<GoodsInfo> Find(Map<String, Integer> map);
+	
+	
 }

@@ -40,7 +40,15 @@
 	
 	<!-- 根据购物车 修改购物车中商品数量 -->
 	<update id="update" parameterType="CartInfo" >
-		update cartInfo set num=num+ #{num} where cno=#{cno}    
+		update cartInfo set num=#{num} where cno=#{cno}    
+	</update>
+	
+	<update id="addNum" parameterType="CartInfo" >
+		update cartInfo set num=num+1 where cno=#{cno}    
+	</update>
+	
+	<update id="minNum" parameterType="CartInfo" >
+		update cartInfo set num=num-1 where cno=#{cno}    
 	</update>
 	
 </mapper>

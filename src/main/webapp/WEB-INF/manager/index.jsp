@@ -115,7 +115,7 @@
         <ul>
             <li><a href="javascript:void(0)" onclick="showpage(this,'page/type.html')">商品类型管理</a></li>
             <li><a href="javascript:void(0)" onclick="showpage(this,'page/goods.html')">商品信息管理</a></li>
-            <li><a href="javascript:void(0)" onclick="showpage(this,'page/view.html')">商品信息浏览</a></li>
+            <li><a href="javascript:void(0)" onclick="showpage(this,'page/look.html')">商品信息浏览</a></li>
         </ul>
         <h3>个人中心信息</h3>
         <ul>

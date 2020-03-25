@@ -44,5 +44,9 @@ public interface ICartInfoBiz {
 	 */
 	public int update(CartInfo cf);
 	
+	public int addNum(CartInfo cf);
+	
+	public int minNum(CartInfo cf);
+	
 	public List<CartInfo> findByCnos(String[] cnos);
 }

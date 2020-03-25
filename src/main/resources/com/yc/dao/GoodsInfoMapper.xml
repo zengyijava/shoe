@@ -49,6 +49,19 @@
 		 join  goodsType gt on  gf.tno = gt.tno
 	</select>
 	
+	
+	<!-- 后台分页  总条数-->
+	<select id="Total" resultType="int" parameterType="String">
+		select count(gno) from goodsInfo
+	</select>
+	<!-- 第几页数 -->
+	<select id="Find" parameterType="map" resultType="GoodsInfo">
+		select gno, gname, price,balance,unit, weight, pics from goodsInfo  order by gno asc limit #{page}, #{rows}
+	</select>
+	
+	
+	
+	
 	<!--  
 	<update id="updateStore" >
         update goodsInfo set

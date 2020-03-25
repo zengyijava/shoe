@@ -8,4 +8,14 @@
 		select * from addrinfo af,menberInfo mf  
 		where af.mno=mf.mno and af.mno=#{_parameter}    
 	</select>
+	
+	<update id="update" parameterType="AddrInfo" >
+    update addrinfo a,menberinfo m set
+	    a.name = #{name},
+	    a.addr = #{addr},
+	    m.photo = #{photo},
+	    a.tel = #{tel}
+    where a.mno=m.mno and a.mno = #{mno}
+</update>
+	
 </mapper>

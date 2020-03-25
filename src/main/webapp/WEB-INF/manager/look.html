@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>浏览商品信息</title>
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/main.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+var page=1;
+var rows=10;
+$(function(){
+	Find(page);
+	//统计数量
+	$.get('../../goods/Total',null,function(data){
+		//console.log(data);
+		Total(data);
+	});
+	
+});
+
+
+function Total(total){
+	var totalPage=Math.ceil(total/rows);
+	var str='<a href="#">上一页</a></li><a href="javascript:Find(1)"  class="active">1</a>';
+	for(var i=2;i<=totalPage;i++){
+		str+='<a href="javascript:Find('+i+')" class="active">'+i+'</a>';
+	}
+	str+='<a href="#">下一页</a></li>';
+	$('#pagenation_info').html('').append(str);
+}
+
+
+function Find(pageNo){
+	page=pageNo;
+	$.post('../../goods/Find',{page:page,rows:rows},function(data){
+	//显示商品信息
+	goodsInfo(data);
+	//显示分页信息
+	$('#pagenation_info a').removeClass('active');
+	$('#pagenation_info li:eq('+(pageNo-1)+') a').addClass('active');
+	
+});
+
+}
+
+function goodsInfo(data){
+	console.log(data);
+	var str='';
+	$.each(data,function(index,item){
+		str+='<tr><th width="5%">'+item.gno+'</th>'
+			+'<th width="35%"><img src="../../../'+item.pics+'" height="50" width="50" ></th>'
+			+'<th width="15%">'+item.gname+'</th>'
+			+'<th width="15%">'+item.price+'</th>'
+			+'<th width="15%">'+item.balance+'</th>'
+			+'	<th>'+item.unit+'</th></tr>';                
+	});
+	$('#goodstype_info').html('').append(str);
+}
+
+	
+</script>
+</head>
+<body>
+<div id="table" class="mt10">
+	<div class="box span10 oh">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+			<thead>
+				<tr>
+                   	<th width="5%">商品编号</th>
+					<th width="25%">商品图片</th>
+                   	<th width="15%">商品名称</th>
+                   	<th width="15%">商品价格</th>
+                   	<th width="15%">商品库存</th>
+                   	<th>专卖店</th>
+                </tr>
+             </thead>
+             <tbody id="goodstype_info" align="center">
+					<tr>
+	                   	<th width="5%">商品编号</th>
+						<th width="25%">商品图片</th>
+	                   	<th width="15%">商品名称</th>
+	                   	<th width="15%">商品价格</th>
+	                   	<th width="15%">商品库存</th>
+	                   	<th>专卖店</th>
+                  	</tr>
+             </tbody>
+		</table>
+		
+		<!-- 加入的分页栏 -->
+		<div class="pagenation" id="pagenation_info" >
+			
+				<a href="#" >上一页</a></li>
+				<a href="#" class="active">1</a></li>
+				<a href="#">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<a href="#">5</a>
+				<a href="#">下一页></a>
+			 
+			</div>
+		
+	</div>
+</div>
+</body>
+</html>

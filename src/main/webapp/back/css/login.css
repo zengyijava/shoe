@@ -61,7 +61,7 @@ input,img{
 	border-style: none;
 	vertical-align: middle;
 }
-.username,.pwd{
+.username,.pwd,.inputCode,.checkCode{
 	width: 300px;
 	height: 48px;
 	line-height: 48px;

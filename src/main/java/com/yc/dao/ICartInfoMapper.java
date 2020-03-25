@@ -49,5 +49,10 @@ public interface ICartInfoMapper {
 	
 	public List<CartInfo> finds(int mno);
 	
+    public int addNum(CartInfo cf);
+	
+	public int minNum(CartInfo cf);
+	
+	
 	public List<CartInfo> findByCnos(String[] cnos);
 }
